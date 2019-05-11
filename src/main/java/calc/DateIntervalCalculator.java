@@ -22,6 +22,14 @@ public class DateIntervalCalculator {
 		List<LocalDate> dates = new ArrayList<LocalDate>();
 		int length = (int)DAYS.between(startingDate, endDate);
 		int occurences = length / interval;
+		
+		dates = returnDatesByRequestedOccurencesAndInterval(startingDate, occurences, interval);
+		
+		return dates;
+	}
+	
+	public static List<LocalDate> returnDatesByRequestedOccurencesAndInterval(LocalDate startingDate, int occurences, int interval) {
+		List<LocalDate> dates = new ArrayList<LocalDate>();
 		LocalDate dateIndex = startingDate;
 		
 		for(int i = 0; i < occurences; i++) {

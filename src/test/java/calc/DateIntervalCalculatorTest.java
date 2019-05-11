@@ -58,4 +58,32 @@ public class DateIntervalCalculatorTest {
 		assertArrayEquals(parsedDates, DateIntervalCalculator.returnIntervalDatesByRange(startDate, endDate, interval).toArray());
 		
 	}
+	
+	@Test
+	public void testReturnDatesByOccurencesAndInterval() throws ParseException {
+		int interval = 90;
+		int occurences = 12;
+		LocalDate startDate = LocalDate.parse("2019-01-01");
+		String dates = "2019-04-01\n" + 
+				"2019-06-30\n" + 
+				"2019-09-28\n" + 
+				"2019-12-27\n" + 
+				"2020-03-26\n" + 
+				"2020-06-24\n" + 
+				"2020-09-22\n" + 
+				"2020-12-21\n" + 
+				"2021-03-21\n" + 
+				"2021-06-19\n" + 
+				"2021-09-17\n" + 
+				"2021-12-16\n";
+		String[] dateArray = dates.split("\\n");
+		LocalDate[] parsedDates = new LocalDate[dateArray.length];
+		
+		for(int i = 0; i < dateArray.length; i++) {
+			parsedDates[i] = LocalDate.parse(dateArray[i]);
+		}
+		
+		assertArrayEquals(parsedDates, DateIntervalCalculator.returnDatesByRequestedOccurencesAndInterval(startDate, occurences, interval).toArray());
+		
+	}
 }
