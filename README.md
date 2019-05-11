@@ -1,5 +1,3 @@
-# java-8-date-examples
-
 ## Java 8 date example usage
 
 ### DateIntervalCalculator 
