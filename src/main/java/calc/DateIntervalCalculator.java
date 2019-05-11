@@ -1,7 +1,6 @@
 package calc;
 
 import java.time.LocalDate;
-import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import static java.time.temporal.ChronoUnit.DAYS;
@@ -9,7 +8,7 @@ import static java.time.temporal.ChronoUnit.DAYS;
 public class DateIntervalCalculator {
 
 	public static boolean returnIfIntervalByDateAndInteger(LocalDate startingDate, LocalDate testDate, int interval) {
-		int length = Period.between(testDate, startingDate).getDays();
+		int length = (int)DAYS.between(testDate, startingDate);
 		
 		if (length % interval == 0) {
 			return true;

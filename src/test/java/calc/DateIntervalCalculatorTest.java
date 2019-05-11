@@ -1,26 +1,45 @@
 package calc;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.text.ParseException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Test;
 
 public class DateIntervalCalculatorTest {
 
 	@Test
-	public void testIfIntervalOfDateByInteger() throws ParseException {
+	public void testIfIntervalOfDate() throws ParseException {
 		LocalDate startDate = LocalDate.parse("2019-01-01");
 		LocalDate testDate = LocalDate.parse("2019-01-31");
-		LocalDate anotherTestDate = LocalDate.parse("2019-03-01");
+		LocalDate anotherTestDate = LocalDate.parse("2019-03-02");
 		
 		int interval = 30;
 		
 		assertTrue(DateIntervalCalculator.returnIfIntervalByDateAndInteger(startDate, testDate, interval));
 		assertTrue(DateIntervalCalculator.returnIfIntervalByDateAndInteger(startDate, anotherTestDate, interval));
+	}
+	
+	@Test
+	public void testBadDatesIfIntervalOfStartDate() throws ParseException {
+		int numOfBadDates = 60;
+		int interval = 30;
+		LocalDate startDate = LocalDate.parse("2019-01-01");
+		List<LocalDate> validDates = new ArrayList<LocalDate>();
+		validDates.add(LocalDate.parse("2019-01-31"));
+		validDates.add(LocalDate.parse("2019-03-02"));
 		
+		for(int i = 1; i <= numOfBadDates; i++) {
+			LocalDate aDate = startDate.plusDays(i);
+			if(!validDates.contains(aDate)) {
+				assertFalse(DateIntervalCalculator.returnIfIntervalByDateAndInteger(startDate, aDate, interval));
+			}
+		}
 	}
 	
 	@Test
